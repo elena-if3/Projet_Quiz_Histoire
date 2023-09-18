@@ -25,4 +25,4 @@ Ce projet vise à rendre l'apprentissage de l'histoire plus interactif et engage
 
 # Conclusion
 
-Ce projet de framework PHP pour un quiz d'histoire interactif promet une expérience éducative et enrichissante pour les passionnés d'histoire et pas que!
+Ce projet de framework PHP pour un quiz d'histoire interactif promet une expérience éducative et enrichissante pour les passionnés d'histoire, et pas que!
