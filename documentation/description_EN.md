@@ -10,7 +10,7 @@ When a user launches the application, it will randomly select an item from the d
 
 The main challenge for the user will be to determine which of the three items presented at the bottom of the page is the closest, chronologically, to the item displayed at the top. However, to make the game even more interesting, one of the three options will always be relatively close to the proposed item. The placement of this special response will be randomly chosen among the three possible positions (first, second, or third).
 
-The game will consist of ten questions of this type. At the end of the game, all the items presented during the session will be displayed, and each item will be linked to a complete description on Wikipedia. Although I don't have time to create original content, this will allow users to explore the topics that interest them further.
+The game will consist of ten questions of this type. At the end of the game, all the items presented during the session will be displayed, and each item will be linked to the related Wikipedia article. Although I don't have enough time to create original content, this will allow users to explore further the topics that interest them most.
 
 # Optional feature: login system
 
