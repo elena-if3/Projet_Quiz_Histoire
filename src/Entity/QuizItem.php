@@ -32,6 +32,9 @@ class QuizItem
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $submissionDate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'proposedQuizItems')]
+    private ?User $proposedBy = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class QuizItem
     public function setSubmissionDate(?\DateTimeInterface $submissionDate): static
     {
         $this->submissionDate = $submissionDate;
+
+        return $this;
+    }
+
+    public function getProposedBy(): ?User
+    {
+        return $this->proposedBy;
+    }
+
+    public function setProposedBy(?User $proposedBy): static
+    {
+        $this->proposedBy = $proposedBy;
 
         return $this;
     }
