@@ -1,4 +1,4 @@
-echo yes | del migrations\*
+del migrations\Ver*
 symfony console doctrine:database:drop --force --no-interaction
 symfony console doctrine:database:create --no-interaction
 symfony console make:migration --no-interaction

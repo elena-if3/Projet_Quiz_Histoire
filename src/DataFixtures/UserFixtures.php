@@ -19,13 +19,13 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        for ($i = 0; $i < 5; $i++){
+        for ($i = 0; $i < 5; $i++) {
             $user = new User();
-            $user->setEmail ('user'.$i.'@coucou.be');
-            $user->setFullName('user'.$i);
+            $user->setEmail('user' . $i . '@coucou.be');
+            $user->setFullName('user' . $i);
             $user->setPassword($this->passwordHasher->hashPassword(
                 $user,
-                'the'.$i.'pw'
+                'the' . $i . 'pw'
             ));
             $manager->persist($user);
         }
