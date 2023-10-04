@@ -8,20 +8,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+// own service
+use App\Service\GenerateOptions;
+
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine, GenerateOptions $generator): Response
     {
+        // get array containing all the quiz items
         $allItems = $doctrine->getRepository(QuizItem::class);
         $allItemsArray = $allItems->findAll();
 
-        $quizPropositionIndex = mt_rand(0, count($allItemsArray)-1);
+        // pick random item from array
+        $quizPropositionIndex = mt_rand(0, count($allItemsArray) - 1);
         $quizProposition = $allItemsArray[$quizPropositionIndex];
 
-        $var = ['quizProposition' => $quizProposition];
+        // find 3 coherent options (possible quiz answers)
+        $threeOptions = $generator->genOptions($quizProposition);
 
-        return $this->render('home/index.html.twig', $var);
+
+
+        $vars = [
+            'quizProposition' => $quizProposition,
+            'threeOptions' => $threeOptions
+        ];
+
+        return $this->render('home/index.html.twig', $vars);
     }
 
     #[Route('/vue1', name: 'vue 1')]
