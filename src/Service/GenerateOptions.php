@@ -93,8 +93,10 @@ class GenerateOptions
         $results = $query->getResult();
         // dd($results);
 
-        $twoErrOptions = array_rand($results, 2);
-        dd($twoErrOptions);
+        for ($i=0; $i<2; $i++) {
+            $twoErrOptions[] = $results[mt_rand(0, count($results) - 1)];
+        }
+        // dd($twoErrOptions);
 
         // 3. Put together correct and erroneus answers
         $twoErrOptions[] = $correctOption;
