@@ -16,18 +16,19 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ManagerRegistry $doctrine, GenerateOptions $generator): Response
     {
-        // get array containing all the quiz items
+        // Get array containing all the quiz items
         $allItems = $doctrine->getRepository(QuizItem::class);
         $allItemsArray = $allItems->findAll();
 
-        // pick random item from array
+        // Pick random item from array
         $quizPropositionIndex = mt_rand(0, count($allItemsArray) - 1);
         $quizProposition = $allItemsArray[$quizPropositionIndex];
 
-        // find 3 coherent options (possible quiz answers)
+        // Find 3 coherent options by using own GenerateOptions service
         $threeOptions = $generator->genOptions($quizProposition);
 
-
+        // Shuffle the array to randomize the order
+        shuffle($threeOptions);
 
         $vars = [
             'quizProposition' => $quizProposition,

@@ -1,22 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
 
-<section>
-    <div class="card" style="width: 18rem;">
-        <img src={{ quizProposition.image }} class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{ quizProposition.title }}</h5>
-            <p class="card-text">{{ quizProposition.description }}</p>
-        </div>
-    </div>
-</section>
-<section>
-    <div>Choix #1</div>
-    <div>Choix #2</div>
-    <div>Choix #3</div>
-</section>
+	<section>
+		<div class="card" style="width: 18rem;">
+			<img src={{ quizProposition.image }} class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">{{ quizProposition.title }}</h5>
+				<p class="card-text">{{ quizProposition.description }}</p>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="card" style="width: 18rem;">
+			<img src={{ threeOptions[0].image }} class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">{{ threeOptions[0].title }}</h5>
+				<p class="card-text">{{ threeOptions[0].description }}</p>
+			</div>
+		</div>
+		<div class="card" style="width: 18rem;">
+			<img src={{ threeOptions[1].image }} class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">{{ threeOptions[1].title }}</h5>
+				<p class="card-text">{{ threeOptions[1].description }}</p>
+			</div>
+		</div>
+		<div class="card" style="width: 18rem;">
+			<img src={{ threeOptions[2].image }} class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">{{ threeOptions[2].title }}</h5>
+				<p class="card-text">{{ threeOptions[2].description }}</p>
+			</div>
+		</div>
+	</section>
 
 {% endblock %}

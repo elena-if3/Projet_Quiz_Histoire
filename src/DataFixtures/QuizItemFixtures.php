@@ -13,11 +13,11 @@ class QuizItemFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 150; $i++) {
 
             $item = new QuizItem();
             $item->setTitle('Quiz item #' . $i);
-            $item->setYear(mt_rand(-800, 1980));
+            $item->setYear(mt_rand(-800, 1900));
             $item->setDescription('This happened in ' . $item->getYear());
             $item->setLink('Link #' . $i);
             $item->setImage($faker->imageUrl($width = 640, $height = 480));

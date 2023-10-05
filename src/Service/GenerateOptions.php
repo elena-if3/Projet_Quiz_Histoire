@@ -61,11 +61,12 @@ class GenerateOptions
         // 1.1. Get the entity manager from the ManagerRegistry
         $em = $this->doctrine->getManager();
 
-        // 1.2. Define two named parameters in the DQL query
+        // 1.2. Define DQL query including named parameters
         $dql = "SELECT qi FROM App\Entity\QuizItem qi 
-                WHERE qi.year >= :minLimit AND qi.year <= :maxLimit";
+                WHERE qi.year >= :minLimit AND qi.year <= :maxLimit
+                AND qi.id != :propositionId";
 
-        // 1.3. Create a query object
+        // 1.3. Create query object
         $query = $em->createQuery($dql);
 
         // 1.4. Bind values to parameters
@@ -74,34 +75,40 @@ class GenerateOptions
 
         $maxLimit =  $quizItem->getYear() + getMargin($quizItem);
         $query->setParameter('maxLimit', $maxLimit);
+
+        $query->setParameter('propositionId', $quizItem->getId());
         
         // 1.5. Execute query
         $results = $query->getResult();
-        // dd($results);
 
         // 1.6. Pick random result (object) from results (objects array)
         $correctOption = $results[mt_rand(0, count($results) - 1)];
-        // dd($correctOption);
+
 
         // 2. Select two erroneous answers
 
+        // 2.1. Define DQL query including parameters
         $dql = "SELECT qi FROM App\Entity\QuizItem qi 
                 WHERE qi.year < :minLimit OR qi.year > :maxLimit";
+        
+        // 2.3. Create query object
         $query = $em->createQuery($dql);
+
+        // 2.4. Bind values to parameters
         $query->setParameter('minLimit', $minLimit);
         $query->setParameter('maxLimit', $maxLimit);
-        $results = $query->getResult();
-        // dd($results);
 
+        // 2.5. Execute query
+        $results = $query->getResult();
+
+        // 2.6. Add two random objects from results array to new array
         for ($i=0; $i<2; $i++) {
             $twoErrOptions[] = $results[mt_rand(0, count($results) - 1)];
         }
-        // dd($twoErrOptions);
 
-        // 3. Put together correct and erroneus answers
+        // 3. Put together correct answer and erroneus answers
         $twoErrOptions[] = $correctOption;
         $allOptions = $twoErrOptions;
-        dd($allOptions);
 
         return $allOptions;
     }
