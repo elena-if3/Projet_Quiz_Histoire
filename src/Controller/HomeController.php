@@ -10,11 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 // own service
 use App\Service\GenerateOptions;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ManagerRegistry $doctrine, GenerateOptions $generator): Response
+    public function index(ManagerRegistry $doctrine, GenerateOptions $generator, SessionInterface $session): Response
     {
         // Get array containing all the quiz items
         $allItems = $doctrine->getRepository(QuizItem::class);
@@ -30,10 +31,25 @@ class HomeController extends AbstractController
         // Shuffle the array to randomize the order
         shuffle($threeOptions);
 
+        // stocker les cartes dans la session
+        if (empty($session->get('card_compilation'))){
+            $session->set('card_compilation', []);    
+        }
+        $cardCompilation = $session->get('card_compilation');
+        $cardCompilation[] = $quizProposition;
+        $cardCompilation = array_merge ($cardCompilation, $threeOptions);
+        
+        // stocker dans la session
+        $session->set('card_compilation',$cardCompilation);    
+
+
+
         $vars = [
             'quizProposition' => $quizProposition,
             'threeOptions' => $threeOptions
         ];
+
+
 
         return $this->render('home/index.html.twig', $vars);
     }

@@ -5,6 +5,7 @@
 
 {% block body %}
 
+	{{ dump (app.session.get('card_compilation') )}}
 	<section>
 		<div class="card" style="width: 18rem;">
 			<img src={{ quizProposition.image }} class="card-img-top" alt="...">
@@ -15,7 +16,7 @@
 		</div>
 	</section>
 	<section>
-		<div class="card" style="width: 18rem;">
+		<div class="card option" data-id="{{ threeOptions[0].id }}" data-type="{{ threeOptions[0].type }}" style="width: 18rem;">
 			<img src={{ threeOptions[0].image }} class="card-img-top" alt="...">
 			<div class="card-body">
 				<h5 class="card-title">{{ threeOptions[0].title }}</h5>
@@ -37,5 +38,7 @@
 			</div>
 		</div>
 	</section>
+
+
 
 {% endblock %}

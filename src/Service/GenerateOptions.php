@@ -83,7 +83,7 @@ class GenerateOptions
 
         // 1.6. Pick random result (object) from results (objects array)
         $correctOption = $results[mt_rand(0, count($results) - 1)];
-
+        $correctOption->type = "correct";
 
         // 2. Select two erroneous answers
 
@@ -102,13 +102,18 @@ class GenerateOptions
         $results = $query->getResult();
 
         // 2.6. Add two random objects from results array to new array
+        
+        $allOptions =[];
         for ($i=0; $i<2; $i++) {
-            $twoErrOptions[] = $results[mt_rand(0, count($results) - 1)];
+            $option =  $results[mt_rand(0, count($results) - 1)];
+            $option->type = 'erroneous'; 
+            $allOptions[] = $option;
         }
 
+
         // 3. Put together correct answer and erroneus answers
-        $twoErrOptions[] = $correctOption;
-        $allOptions = $twoErrOptions;
+        $allOptions[] = $correctOption;
+        
 
         return $allOptions;
     }
