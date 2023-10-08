@@ -26,10 +26,10 @@ class HomeController extends AbstractController
         $quizProposition = $allItemsArray[$quizPropositionIndex];
 
         // Find 3 coherent options by using own GenerateOptions service
-        $threeOptions = $generator->genOptions($quizProposition);
+        $options = $generator->genOptions($quizProposition);
 
         // Shuffle the array to randomize the order
-        shuffle($threeOptions);
+        shuffle($options);
 
         // stocker les cartes dans la session
         if (empty($session->get('card_compilation'))){
@@ -37,7 +37,7 @@ class HomeController extends AbstractController
         }
         $cardCompilation = $session->get('card_compilation');
         $cardCompilation[] = $quizProposition;
-        $cardCompilation = array_merge ($cardCompilation, $threeOptions);
+        $cardCompilation = array_merge ($cardCompilation, $options);
         
         // stocker dans la session
         $session->set('card_compilation',$cardCompilation);    
@@ -46,10 +46,8 @@ class HomeController extends AbstractController
 
         $vars = [
             'quizProposition' => $quizProposition,
-            'threeOptions' => $threeOptions
+            'options' => $options
         ];
-
-
 
         return $this->render('home/index.html.twig', $vars);
     }

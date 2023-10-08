@@ -1,14 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home
+{% block title %}Home{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('quiz') }}
 {% endblock %}
 
 {% block body %}
 
 	{{ dump (app.session.get('card_compilation') )}}
+
 	<section>
 		<div class="card" style="width: 18rem;">
-			<img src={{ quizProposition.image }} class="card-img-top" alt="...">
+			<img src=" {{ quizProposition.image }} " class="card-img-top">
 			<div class="card-body">
 				<h5 class="card-title">{{ quizProposition.title }}</h5>
 				<p class="card-text">{{ quizProposition.description }}</p>
@@ -16,29 +21,15 @@
 		</div>
 	</section>
 	<section>
-		<div class="card option" data-id="{{ threeOptions[0].id }}" data-type="{{ threeOptions[0].type }}" style="width: 18rem;">
-			<img src={{ threeOptions[0].image }} class="card-img-top" alt="...">
+		{% for i in 0..2 %}
+		<div class="card option" data-id="{{ options[i].id }}" data-type="{{ options[i].type }}" style="width: 18rem;">
+			<img src=" {{ options[i].image }} " class="card-img-top">
 			<div class="card-body">
-				<h5 class="card-title">{{ threeOptions[0].title }}</h5>
-				<p class="card-text">{{ threeOptions[0].description }}</p>
+				<h5 class="card-title">{{ options[i].title }}</h5>
+				<p class="card-text">{{ options[i].description }}</p>
 			</div>
 		</div>
-		<div class="card" style="width: 18rem;">
-			<img src={{ threeOptions[1].image }} class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">{{ threeOptions[1].title }}</h5>
-				<p class="card-text">{{ threeOptions[1].description }}</p>
-			</div>
-		</div>
-		<div class="card" style="width: 18rem;">
-			<img src={{ threeOptions[2].image }} class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">{{ threeOptions[2].title }}</h5>
-				<p class="card-text">{{ threeOptions[2].description }}</p>
-			</div>
-		</div>
+		{% endfor %}
 	</section>
-
-
 
 {% endblock %}
