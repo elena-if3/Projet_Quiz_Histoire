@@ -14,8 +14,14 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function index(ManagerRegistry $doctrine, GenerateOptions $generator, SessionInterface $session): Response
+    #[Route('/', name: 'home')]
+    public function index(): Response
+    {
+        return $this->render('home/index.html.twig');
+    }
+
+    #[Route('/quiz', name: 'quiz')]
+    public function quiz(ManagerRegistry $doctrine, GenerateOptions $generator, SessionInterface $session): Response
     {
         // Get array containing all the quiz items
         $allItems = $doctrine->getRepository(QuizItem::class);
@@ -31,6 +37,9 @@ class HomeController extends AbstractController
         // Shuffle the array to randomize the order
         shuffle($options);
 
+        // Check if session empty, if not --> empty session
+        // ...
+
         // stocker les cartes dans la session
         if (empty($session->get('card_compilation'))){
             $session->set('card_compilation', []);    
@@ -42,14 +51,12 @@ class HomeController extends AbstractController
         // stocker dans la session
         $session->set('card_compilation', $cardCompilation);    
 
-
-
         $vars = [
             'quizProposition' => $quizProposition,
             'options' => $options
         ];
 
-        return $this->render('home/index.html.twig', $vars);
+        return $this->render('home/quiz.html.twig', $vars);
     }
 
     #[Route('/vue1', name: 'vue 1')]
