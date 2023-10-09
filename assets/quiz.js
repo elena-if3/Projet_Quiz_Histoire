@@ -1,19 +1,35 @@
-let elements = document.getElementsByClassName("option");
+// Get all the cards that have a class "option"
+const optionCards = document.getElementsByClassName("option");
 
-for (let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("click", responseFeedback);
+// Bind event (click) and feedback function for each of them
+for (let i = 0; i < optionCards.length; i++) {
+    optionCards[i].addEventListener("click", feedback);
 }
 
-function responseFeedback(event) {
-
-    const card = event.currentTarget;
-
+// Function to provide players with feedback re. their response 
+function feedback(event) {
+    
+    // get the element that is clicked on
+    let card = event.currentTarget;
+    
+    // if response correct --> add "green-border" class
     if (card.dataset.type === "correct") {
-        let correct = "<div class='card' style='width: 18rem; background-color: green;'>";
-        card.innerHTML = correct;
+        card.classList.add("green-border");
     }
     else {
-        let erroneous = "<div class='card' style='width: 18rem; background-color: red;'>";
-        card.innerHTML = erroneous;
+        // else --> add "red-border" class
+        card.classList.add("red-border");
+
+        // transform HTML collection into array
+        let arrOptionCards = Array.from(optionCards);
+
+        // go through array
+        arrOptionCards.forEach(function(option) {
+
+            //  if correct response --> add "dotted-green-border" class
+            if (option.dataset.type === "correct"){
+                option.classList.add("dotted-green-border");
+            }
+        });
     }
 }

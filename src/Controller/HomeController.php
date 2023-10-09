@@ -40,7 +40,7 @@ class HomeController extends AbstractController
         $cardCompilation = array_merge ($cardCompilation, $options);
         
         // stocker dans la session
-        $session->set('card_compilation',$cardCompilation);    
+        $session->set('card_compilation', $cardCompilation);    
 
 
 
