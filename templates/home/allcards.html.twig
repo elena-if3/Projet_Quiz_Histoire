@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz{% endblock %}
+
+{# {% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('quiz') }}
+{% endblock %} #}
+
+{% block body %}
+
+	{{ dump (app.session.get('card_compilation') )}}
+	{{ dump (app.session.get('counter') )}}
+
+	<section>
+		{% for card in card_compilation %}
+		<div class="card" style="width: 18rem;">
+			<img src=" {{ card.image }} " class="card-img-top">
+			<div class="card-body">
+				<h5 class="card-title">{{ card.title }}</h5>
+				<p class="card-text">{{ card.description }}</p>
+				<a href="{{ card.link }}" class="card-link">Link to Wikipedia article</a>
+			</div>
+		</div>
+		{% endfor %}
+	</section>
+	<section>
+		<a href="{{ path ("quiz") }}">Play again</a>
+	</section>
+
+{% endblock %}

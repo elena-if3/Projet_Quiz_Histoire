@@ -23,13 +23,13 @@ class GenerateOptions
 
             switch ($itemYear) {
                 case ($itemYear < 0):
-                    $margin = 150;
-                    break;
-                case ($itemYear < 500):
                     $margin = 125;
                     break;
-                case ($itemYear < 1000):
+                case ($itemYear < 500):
                     $margin = 100;
+                    break;
+                case ($itemYear < 1000):
+                    $margin = 75;
                     break;
                 case ($itemYear < 1250):
                     $margin = 50;
@@ -102,18 +102,15 @@ class GenerateOptions
         $results = $query->getResult();
 
         // 2.6. Add two random objects from results array to new array
-        
         $allOptions =[];
         for ($i=0; $i<2; $i++) {
             $option =  $results[mt_rand(0, count($results) - 1)];
-            $option->type = 'erroneous'; 
+            $option->type = "erroneous";
             $allOptions[] = $option;
         }
 
-
         // 3. Put together correct answer and erroneus answers
-        $allOptions[] = $correctOption;
-        
+        $allOptions[] = $correctOption;     
 
         return $allOptions;
     }

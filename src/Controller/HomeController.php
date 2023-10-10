@@ -43,7 +43,6 @@ class HomeController extends AbstractController
 
         $cardCompilation = $session->get('card_compilation');
 
-
         if (empty($cardCompilation)) {
             // premier fois qu'on arrive sur le site,
             // on n'a pas de cartes alors notre compteur
@@ -51,40 +50,41 @@ class HomeController extends AbstractController
             $session->set('card_compilation', []);
             $session->set('counter', 0);
         }
-        // check if game ended
+        // Check if game ended
         if ($session->get('counter') == 3) {
             // game ended, show result
-            dd("end");
-            // return $this->redirectToRoute(nom)
+            // dd("Game over");
+            return $this->redirectToRoute('allcards');
+
         } else {
             // game in process, increment counter
             $session->set('counter', $session->get('counter') + 1);
         }
 
-
         $cardCompilation[] = $quizProposition;
         $cardCompilation = array_merge($cardCompilation, $options);
-
-        // if (empty($session->get('card_compilation'))){
-        //     $session->set('card_compilation', []);    
-        // }
-        // else{
-        //     $cardCompilation = [];
-        // }
-
-        // $cardCompilation = $session->get('card_compilation');
-        // $cardCompilation[] = $quizProposition;
-        // $cardCompilation = array_merge ($cardCompilation, $options);
 
         // stocker dans la session
         $session->set('card_compilation', $cardCompilation);
 
         $vars = [
             'quizProposition' => $quizProposition,
-            'options' => $options
+            'options' => $options,
         ];
 
         return $this->render('home/quiz.html.twig', $vars);
+    }
+
+    #[Route('/allcards', name: 'allcards')]
+    public function allcards(SessionInterface $session): Response
+    {
+        $cardCompilation = $session->get('card_compilation');
+
+        $vars = ['card_compilation' => $cardCompilation];
+        
+        // $session->clear();
+
+        return $this->render('home/allcards.html.twig', $vars);
     }
 
     #[Route('/vue1', name: 'vue 1')]

@@ -2,11 +2,6 @@
 
 {% block title %}Home{% endblock %}
 
-{# {% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('') }}
-{% endblock %} #}
-
 {% block body %}
 
 	<h3>Welcome to History Quiz</h3>
@@ -15,7 +10,7 @@
 		<div class="card-body">
 			<h5 class="card-title">Ready to take the challenge?</h5>
 			<p class="card-text">Click on the link below to start playing!</p>
-			<a href="{{ path ("quiz") }}" class="card-link" id="start">TAKE QUIZ</a>
+			<a href="{{ path ("quiz") }}" class="card-link">TAKE QUIZ</a>
 		</div>
 	</div>
 

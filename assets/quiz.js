@@ -3,18 +3,23 @@ const optionCards = document.getElementsByClassName("option");
 
 // Bind event (click) and feedback function for each of them
 for (let i = 0; i < optionCards.length; i++) {
-    optionCards[i].addEventListener("click", feedback);
+    optionCards[i].addEventListener("click", feedbackAndNext);
 }
 
-// Function to provide players with feedback re. their response 
-function feedback(event) {
+// Function to provide players with feedback, 
+// (count correct answers?) and reload page
+function feedbackAndNext(event) {
 
     // get the element that is clicked on
     let card = event.currentTarget;
 
+    // // set variable to keep count of correct answers to zero
+    // let correctCount = 0;
+
     // if response correct --> add "green-border" class
     if (card.dataset.type === "correct") {
         card.classList.add("green-border");
+        // keep o
     }
     else {
         // else --> add "red-border" class
@@ -33,9 +38,8 @@ function feedback(event) {
         });
     }
 
-    // recharger la page
+    // Reload page
     setTimeout(() => {
         window.location.href = "";
-    }, 4000);
-
+    }, 3500);
 }
