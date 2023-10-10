@@ -4,19 +4,21 @@ namespace App\Controller;
 
 use App\Entity\QuizItem;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 // own service
 use App\Service\GenerateOptions;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(SessionInterface $session): Response
     {
+        $session->clear();
+
         return $this->render('home/index.html.twig');
     }
 
@@ -38,18 +40,44 @@ class HomeController extends AbstractController
         shuffle($options);
 
         // Check if session empty, if not --> empty session
-        // ...
 
-        // stocker les cartes dans la session
-        if (empty($session->get('card_compilation'))){
-            $session->set('card_compilation', []);    
-        }
         $cardCompilation = $session->get('card_compilation');
+
+
+        if (empty($cardCompilation)) {
+            // premier fois qu'on arrive sur le site,
+            // on n'a pas de cartes alors notre compteur
+            // doit valoir 0
+            $session->set('card_compilation', []);
+            $session->set('counter', 0);
+        }
+        // check if game ended
+        if ($session->get('counter') == 3) {
+            // game ended, show result
+            dd("end");
+            // return $this->redirectToRoute(nom)
+        } else {
+            // game in process, increment counter
+            $session->set('counter', $session->get('counter') + 1);
+        }
+
+
         $cardCompilation[] = $quizProposition;
-        $cardCompilation = array_merge ($cardCompilation, $options);
-        
+        $cardCompilation = array_merge($cardCompilation, $options);
+
+        // if (empty($session->get('card_compilation'))){
+        //     $session->set('card_compilation', []);    
+        // }
+        // else{
+        //     $cardCompilation = [];
+        // }
+
+        // $cardCompilation = $session->get('card_compilation');
+        // $cardCompilation[] = $quizProposition;
+        // $cardCompilation = array_merge ($cardCompilation, $options);
+
         // stocker dans la session
-        $session->set('card_compilation', $cardCompilation);    
+        $session->set('card_compilation', $cardCompilation);
 
         $vars = [
             'quizProposition' => $quizProposition,

@@ -8,10 +8,10 @@ for (let i = 0; i < optionCards.length; i++) {
 
 // Function to provide players with feedback re. their response 
 function feedback(event) {
-    
+
     // get the element that is clicked on
     let card = event.currentTarget;
-    
+
     // if response correct --> add "green-border" class
     if (card.dataset.type === "correct") {
         card.classList.add("green-border");
@@ -24,12 +24,18 @@ function feedback(event) {
         let arrOptionCards = Array.from(optionCards);
 
         // go through array
-        arrOptionCards.forEach(function(option) {
+        arrOptionCards.forEach(function (option) {
 
             //  if correct response --> add "dotted-green-border" class
-            if (option.dataset.type === "correct"){
+            if (option.dataset.type === "correct") {
                 option.classList.add("dotted-green-border");
             }
         });
     }
+
+    // recharger la page
+    setTimeout(() => {
+        window.location.href = "";
+    }, 4000);
+
 }

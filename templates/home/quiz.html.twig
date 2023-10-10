@@ -10,6 +10,7 @@
 {% block body %}
 
 	{{ dump (app.session.get('card_compilation') )}}
+	{{ dump (app.session.get('counter') )}}
 
 	<section>
 		<div class="card" style="width: 18rem;">
@@ -31,5 +32,7 @@
 		</div>
 		{% endfor %}
 	</section>
+
+
 
 {% endblock %}
