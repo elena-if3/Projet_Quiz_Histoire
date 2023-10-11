@@ -11,7 +11,16 @@
 
 	{{ dump (app.session.get('card_compilation') )}}
 	{{ dump (app.session.get('counter') )}}
+	{{ dump (app.session.get('correct_answers_count') )}}
 
+	<section>
+		{% if app.session.get('correct_answers_count') > 1 %}
+		<h4>Congrats, {{ app.session.get('correct_answers_count') }} out of 3 are correct!</h4>
+		{% endif %}
+		{% if app.session.get('correct_answers_count') <= 1 %}
+		<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 right. Now take a look at all the items below and, if you wish, take the time to read a bit...</h4>
+		{% endif %}
+	</section>
 	<section>
 		{% for card in card_compilation %}
 		<div class="card" style="width: 18rem;">

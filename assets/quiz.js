@@ -13,13 +13,26 @@ function feedbackAndNext(event) {
     // get the element that is clicked on
     let card = event.currentTarget;
 
-    // // set variable to keep count of correct answers to zero
-    // let correctCount = 0;
-
     // if response correct --> add "green-border" class
     if (card.dataset.type === "correct") {
         card.classList.add("green-border");
-        // keep o
+
+        // Declare variable
+        let isCorrect = true;
+
+        // Create a new XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+
+        // Define the URL and request method
+        const url = '/correct/answers/count';
+        const method = 'POST';
+
+        // Set up the request
+        xhr.open(method, url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        // Send the isCorrect information to the server
+        xhr.send(JSON.stringify({ isCorrect: isCorrect }));
     }
     else {
         // else --> add "red-border" class

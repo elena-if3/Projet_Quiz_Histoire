@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\QuizItem;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 // own service
 use App\Service\GenerateOptions;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends AbstractController
 {
@@ -75,6 +77,25 @@ class HomeController extends AbstractController
         return $this->render('home/quiz.html.twig', $vars);
     }
 
+    // Controller action to handle the AJAX request
+    #[Route('/correct/answers/count', name: 'correct count')]
+    public function updateCorrectAnswersCount(Request $ajaxRequest, Session $session)
+    {
+        // Get the 'isCorrect' value from the AJAX request
+        $data = json_decode($ajaxRequest->getContent(), true);
+        $isCorrect = $data['isCorrect'];
+
+        // If the user's answer is correct, increment the count in the session
+        if ($isCorrect) {
+            $correctAnswersCount = $session->get('correct_answers_count', 0);
+            $session->set('correct_answers_count', $correctAnswersCount + 1);
+        }
+
+        // // You can return a response if needed
+        // return new Response('Success');
+    }
+
+    // Controller --> all cards view (game over)
     #[Route('/allcards', name: 'allcards')]
     public function allcards(SessionInterface $session): Response
     {
