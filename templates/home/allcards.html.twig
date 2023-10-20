@@ -1,40 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quiz{% endblock %}
-
-{# {% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('quiz') }}
-{% endblock %} #}
+{% block title %}All cards{% endblock %}
 
 {% block body %}
 
-	{{ dump (app.session.get('card_compilation') )}}
-	{{ dump (app.session.get('counter') )}}
-	{{ dump (app.session.get('correct_answers_count') )}}
+	{# {{ dump (app.session.get('card_compilation') )}} #}
+	{# {{ dump (app.session.get('counter') )}} #}
+	{# {{ dump (app.session.get('correct_answers_count') )}} #}
 
 	<section>
-		{% if app.session.get('correct_answers_count') > 1 %}
-		<h4>Congrats, {{ app.session.get('correct_answers_count') }} out of 3 are correct!</h4>
-		{% endif %}
-		{% if app.session.get('correct_answers_count') <= 1 %}
-		<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 right. Now take a look at all the items below and, if you wish, take the time to read a bit...</h4>
-		{% endif %}
+		<div>
+			{% if app.session.get('correct_answers_count') > 1 %}
+			<h4>Congrats, {{ app.session.get('correct_answers_count') }} out of 3 answers are correct! Now take a look at all the items displayed in this game. If you wish, take the time to find out more.</h4>
+			{% endif %}
+			{% if app.session.get('correct_answers_count') <= 1 %}
+			<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 right answers. Now take a look at all the items displayed in this game. If you wish, take the time to find out more.</h4>
+			{% endif %}
+		</div>
 	</section>
 	<section>
-		{% for card in card_compilation %}
-		<div class="card" style="width: 18rem;">
-			<img src=" {{ card.image }} " class="card-img-top">
-			<div class="card-body">
-				<h5 class="card-title">{{ card.title }}</h5>
-				<p class="card-text">{{ card.description }}</p>
-				<a href="{{ card.link }}" class="card-link">Link to Wikipedia article</a>
+		<div class="container">
+			{# <div class="row"> #}
+			<div class="row hidden-md-up">
+				{% for card in card_compilation %}
+				{# <div class="col-3 mb-3"> #}
+				<div class="col-md-3 mb-3">
+					<div class="card" style="width: 18rem;">
+						<img src="{{ card.image }}" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title">{{ card.title }}</h5>
+							<p class="card-text">{{ card.description }}</p>
+							<a href="{{ card.link }}" class="card-link">Link to Wikipedia article</a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
 			</div>
 		</div>
-		{% endfor %}
 	</section>
 	<section>
-		<a href="{{ path ("quiz") }}">Play again</a>
+		<a href="{{ path ("home") }}">Play again</a>
 	</section>
 
 {% endblock %}
