@@ -9,12 +9,12 @@
 	{# {{ dump (app.session.get('correct_answers_count') )}} #}
 
 	<section>
-		<div>
+		<div class="textbox">
 			{% if app.session.get('correct_answers_count') > 1 %}
-			<h4>Congrats, {{ app.session.get('correct_answers_count') }} out of 3 answers are correct! Now take a look at all the items displayed in this game. If you wish, take the time to find out more.</h4>
+			<h4>Congrats, {{ app.session.get('correct_answers_count') }} out of 3 answers are correct! Now take a look at all the items displayed in this game. If you wish, take the time to find out more about the events, illustrious people or works below.</h4>
 			{% endif %}
 			{% if app.session.get('correct_answers_count') <= 1 %}
-			<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 right answers. Now take a look at all the items displayed in this game. If you wish, take the time to find out more.</h4>
+			<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 right answers. Now take a look at all the items displayed in this game. If you wish, take the time to find out more about the events, illustrious people or works below.</h4>
 			{% endif %}
 		</div>
 	</section>

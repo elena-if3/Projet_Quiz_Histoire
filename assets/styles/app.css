@@ -1,5 +1,5 @@
 body {
-    background-color: lightgray;
+    background-color: sandybrown;
 }
 
 .option {
@@ -22,4 +22,12 @@ body {
     border: 0.5rem;
     border-color: lime;
     border-style: dotted;
+}
+
+.textbox{
+    width: 84%;
+    margin: 2% 7.25em;
+    padding: 2%;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
 }
