@@ -9,13 +9,16 @@
 	{# {{ dump (app.session.get('correct_answers_count') )}} #}
 
 	<section>
-		<div class="textbox">
+		<div class="textbox-allcards">
 			{% if app.session.get('correct_answers_count') > 1 %}
-			<h4>Congrats, {{ app.session.get('correct_answers_count') }} out of 3 answers are correct! Now take a look at all the items displayed in this game. If you wish, take the time to find out more about the events, illustrious people or works below.</h4>
+			<h4>Congratulations! You got {{ app.session.get('correct_answers_count') }} out of 3 answers correct! 🎉</h4>
 			{% endif %}
+			
 			{% if app.session.get('correct_answers_count') <= 1 %}
-			<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 right answers. Now take a look at all the items displayed in this game. If you wish, take the time to find out more about the events, illustrious people or works below.</h4>
+			<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 answers correct.</h4>
 			{% endif %}
+
+			<h5>⬇️⬇️⬇️ Now, if you wish, take some time to learn more about the events, people, and works featured in this game. ⬇️⬇️⬇️</h5>
 		</div>
 	</section>
 	<section>
@@ -25,11 +28,11 @@
 				{% for card in card_compilation %}
 				{# <div class="col-3 mb-3"> #}
 				<div class="col-md-3 mb-3">
-					<div class="card" style="width: 18rem;">
-						<img src="{{ card.image }}" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">{{ card.title }}</h5>
-							<p class="card-text">{{ card.description }}</p>
+					<div class="card" style="width: 18.75rem;">
+						<img src="{{ asset('images/' ~ card.image) }}" class="card-img-top photo-constraint">
+						<div class="card-body fixed-height-allcards">
+							<h5 class="card-title"><strong>{{ card.year }}</strong>: {{ card.title }}</h5>
+							{# <p class="card-text">{{ card.description }}</p> #}
 							<a href="{{ card.link }}" class="card-link">Link to Wikipedia article</a>
 						</div>
 					</div>
@@ -37,9 +40,9 @@
 				{% endfor %}
 			</div>
 		</div>
-	</section>
-	<section>
-		<a href="{{ path ("home") }}">Play again</a>
+		<div class="container play-again">
+			<a href="{{ path ("home") }}" id="play-again">➡️➡️➡️  CLICK HERE TO PLAY AGAIN  ⬅️⬅️⬅️</a>
+		</div>
 	</section>
 
 {% endblock %}

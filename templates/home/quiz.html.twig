@@ -15,13 +15,18 @@
 
 	<section id="question-area">
 		<div class="col d-flex justify-content-center">
-			<div class="card" style="width: 18rem;">
-				<img src="{{ asset('images/' ~ quizProposition.image) }}" class="card-img-top">
-				<div class="card-body">
+			<div class="card" style="width: 18.75rem;">
+				<img src="{{ asset('images/' ~ quizProposition.image) }}" class="card-img-top photo-constraint">
+				<div class="card-body fixed-height">
 					<h5 class="card-title">{{ quizProposition.title }}</h5>
 					<p class="card-text">{{ quizProposition.description }}</p>
 				</div>
 			</div>
+		</div>
+	</section>
+	<section>
+		<div class="textbox-question">
+			<h5>Which one of the three options below is closest in time to the one above?</h5>
 		</div>
 	</section>
 	<section id="options-area">
@@ -29,8 +34,8 @@
 			<div class="row hidden-md-up">
 				{% for i in 0..2 %}
 				<div class="col-md-4">
-					<div class="card option" data-id="{{ options[i].id }}" data-type="{{ options[i].type }}" style="width: 18rem;">
-						<img src="{{ asset('images/' ~ options[i].image) }} " class="card-img-top">
+					<div class="card option" data-id="{{ options[i].id }}" data-type="{{ options[i].type }}" style="width: 18.75rem;">
+						<img src="{{ asset('images/' ~ options[i].image) }} " class="card-img-top photo-constraint">
 						<div class="card-body">
 							<h5 class="card-title">{{ options[i].title }}</h5>
 							<p class="card-text">{{ options[i].description }}</p>

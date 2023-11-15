@@ -106,7 +106,9 @@ class GenerateOptions
         for ($i=0; $i<2; $i++) {
             $option =  $results[mt_rand(0, count($results) - 1)];
             $option->type = "erroneous";
-            $allOptions[] = $option;
+            if (!in_array($option, $allOptions)){
+                $allOptions[] = $option;
+            }
         }
 
         // 3. Put together correct answer and erroneus answers

@@ -1,14 +1,60 @@
+html{
+    height: 100%;
+}
+    
 body {
-    background-color: sandybrown;
+    margin: 0;
+    padding: 0;
+    background-color: #f58b51; /* color: atomic tangerine */
+    padding-bottom: 2%; /* giusto perché il footer fisso non nasconda la fine del main - da riaggiustare */
+}
+
+h1{
+    font-family: 'Roboto Slab', serif;
+    font-size: 3.5em;
+    color: #032326; /* color: gunmetal */
+    padding-top: 4%;
+    padding-bottom: 1%;
+}
+
+h2{
+    font-size: 2em;
+    font-style: italic;
+    color: #032326; /* color: gunmetal */
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+
+.btn{
+    background-color: #109ae5; /* color: celestial blue*/
+}
+footer{
+    margin-top: 0.25%;
+    padding-top: 0.5%;
+    padding-bottom: 0.15%;
+    margin-bottom: 0;
+    background-color: #eddea4; /* color: vanilla */
+    font-weight: 600;
+    text-align: center;
+}
+
+.textbox-question{
+    width: 70%;
+    margin: 0.5% 15%;
+    padding: 0.5% 1% 0.25% 1%;
+    text-align: center;
+    background-color: #f9f7f3; /* color: baby powder */
+    border-radius: 5px 5px 5px 5px;
 }
 
 .option {
     cursor: pointer;
+    height: 360px;
 }
 
 .green-border {
     border: 0.5rem;
-    border-color: limegreen;
+    border-color: lime;
     border-style: groove;
 }
 
@@ -24,10 +70,40 @@ body {
     border-style: dotted;
 }
 
-.textbox{
-    width: 84%;
-    margin: 2% 7.25em;
-    padding: 2%;
-    background-color: white;
+.photo-constraint{
+    height: 225px;
+    overflow: hidden;
+}
+
+#options-area{
+    margin-bottom: 1%;
+}
+
+.textbox-allcards{
+    width: auto;
+    /* width: 70%; */
+    margin: 0.5% 12% ;
+    padding: 1% 1% 0.5% 1%;
+    text-align: center;
+    background-color: #eddea4; /* color: vanilla */
     border-radius: 5px 5px 5px 5px;
+}
+
+.fixed-height-allcards{
+    height: 180px;
+}
+
+.play-again{
+    width: auto;
+    text-align: center;
+    margin-bottom: 1.25%;
+    padding: 0.5%;
+    background-color: #eddea4; /* color: vanilla */
+    border-radius: 5px 5px 5px 5px;
+}
+
+#play-again{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
 }

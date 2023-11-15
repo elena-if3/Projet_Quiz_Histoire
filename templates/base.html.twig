@@ -2,8 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Base{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -26,7 +29,9 @@
                 </li>
             </ol>
         </nav> #}
-
         {% block body %}{% endblock %}
+        <footer class="fixed-bottom">
+            <h6>&ltMade with love and sweat by Elena Rottin, with a little help from my teacher Francisco Leal Vázquez 🙏 and ChatGPT-3.5 😉/&gt</h6>
+        </footer>
     </body>
 </html>
