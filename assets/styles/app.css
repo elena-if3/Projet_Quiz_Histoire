@@ -28,6 +28,7 @@ h2{
 .btn{
     background-color: #109ae5; /* color: celestial blue*/
 }
+
 footer{
     margin-top: 0.25%;
     padding-top: 0.5%;
@@ -38,7 +39,11 @@ footer{
     text-align: center;
 }
 
-.textbox-question{
+#question-area{
+    margin-top: 1%;
+}
+
+#textbox-question{
     width: 70%;
     margin: 0.5% 15%;
     padding: 0.5% 1% 0.25% 1%;
@@ -47,9 +52,13 @@ footer{
     border-radius: 5px 5px 5px 5px;
 }
 
+#textbox-question h5{
+    font-weight: bold;
+}
+
 .option {
     cursor: pointer;
-    height: 360px;
+    height: 380px;
 }
 
 .green-border {
@@ -71,7 +80,7 @@ footer{
 }
 
 .photo-constraint{
-    height: 225px;
+    height: 240px;
     overflow: hidden;
 }
 
@@ -87,6 +96,10 @@ footer{
     text-align: center;
     background-color: #eddea4; /* color: vanilla */
     border-radius: 5px 5px 5px 5px;
+}
+
+.textbox-allcards h4{
+    font-weight: bold;
 }
 
 .fixed-height-allcards{

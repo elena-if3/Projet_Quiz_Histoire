@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\QuizItem;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\Length;
 
 class GenerateOptions
 {
@@ -103,7 +104,7 @@ class GenerateOptions
 
         // 2.6. Add two random objects from results array to new array
         $allOptions =[];
-        for ($i=0; $i<2; $i++) {
+        while (count($allOptions)<2) {
             $option =  $results[mt_rand(0, count($results) - 1)];
             $option->type = "erroneous";
             if (!in_array($option, $allOptions)){
