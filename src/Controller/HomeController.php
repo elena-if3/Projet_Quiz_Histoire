@@ -42,7 +42,6 @@ class HomeController extends AbstractController
         shuffle($options);
 
         // Check if session empty, if not --> empty session
-
         $cardCompilation = $session->get('card_compilation');
 
         if (empty($cardCompilation)) {
@@ -53,7 +52,7 @@ class HomeController extends AbstractController
             $session->set('counter', 0);
         }
         // Check if game ended
-        if ($session->get('counter') == 3) {
+        if ($session->get('counter') == 5) {
             // game ended, show result
             // dd("Game over");
             return $this->redirectToRoute('allcards');
@@ -91,7 +90,6 @@ class HomeController extends AbstractController
             $session->set('correct_answers_count', $correctAnswersCount + 1);
         }
 
-        // // You can return a response if needed
         // return new Response('Success');
     }
 

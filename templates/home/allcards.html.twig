@@ -10,12 +10,12 @@
 
 	<section>
 		<div class="textbox-allcards">
-			{% if app.session.get('correct_answers_count') > 1 %}
-			<h4>Congratulations! You got {{ app.session.get('correct_answers_count') }} out of 3 answers correct! 🎉</h4>
+			{% if app.session.get('correct_answers_count') > 2 %}
+			<h4>Congratulations! You got {{ app.session.get('correct_answers_count') }} out of 5 answers correct! 🎉</h4>
 			{% endif %}
 			
-			{% if app.session.get('correct_answers_count') <= 1 %}
-			<h4>You got {{ app.session.get('correct_answers_count') }} out of 3 answers correct.</h4>
+			{% if app.session.get('correct_answers_count') <= 2 %}
+			<h4>You got {{ app.session.get('correct_answers_count') }} out of 5 answers correct.</h4>
 			{% endif %}
 
 			<h5>⬇️⬇️⬇️ Now, if you wish, take some time to learn more about the events, people, and works featured in this game. ⬇️⬇️⬇️</h5>
