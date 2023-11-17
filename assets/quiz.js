@@ -54,5 +54,5 @@ function feedbackAndNext(event) {
     // Reload page
     setTimeout(() => {
         window.location.href = "";
-    }, 3500);
+    }, 3000);
 }
