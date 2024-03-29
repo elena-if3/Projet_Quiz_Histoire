@@ -44,10 +44,10 @@ class GenerateOptions
                 case ($itemYear < 1900):
                     $margin = 10;
                     break;
-                case ($itemYear < 1950):
+                case ($itemYear < 1970):
                     $margin = 5;
                     break;
-                case ($itemYear < 2000):
+                case ($itemYear < 2015):
                     $margin = 2;
                     break;
                 default:

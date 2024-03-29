@@ -34,7 +34,7 @@
 			<div class="row hidden-md-up">
 				{% for i in 0..2 %}
 				<div class="col-md-4">
-					<div class="card option" data-id="{{ options[i].id }}" data-type="{{ options[i].type }}" style="width: 18.75rem;">
+					<div class="card option" data-route='{{path("correct count")}}' data-id="{{ options[i].id }}" data-type="{{ options[i].type }}" style="width: 18.75rem;">
 						<img src="{{ asset('images/' ~ options[i].image) }} " class="card-img-top photo-constraint">
 						<div class="card-body">
 							<h5 class="card-title">{{ options[i].title }}</h5>
